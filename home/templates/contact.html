@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {%load static%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Untitled</title>
+  </head>
+
+
+<div class="nav-bar">
+    <div class="container-fluid">
+        <nav class="nav">
+            <div class="nav-left">
+                <img src="">
+                <a class="nav-link active" href="/">Home</a>
+                <a class="nav-link" href="{% url 'product_list' %}">Products</a>
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </div>
+            <div class="nav-right">
+                <a class="nav-link" href="#">Sign In</a>
+                <a class="nav-link" href="#">Sign Up</a>
+                <a class="nav-link" href="#">Log Out</a>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+    <form>
+        <label for="validationCustomUsername" class="form-label">Email</label>
+        <div class="input-group has-validation">
+          <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+          <div class="invalid-feedback">
+            Please enter your email
+          </div>
+        </div>
+        <label for="validationCustomUsername" class="form-label">Phone Number</label>
+        <div class="input-group has-validation">
+          <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+          <div class="invalid-feedback">
+            Please input your phone number
+          </div>
+        </div>
+        <form class="was-validated">
+            <div class="mb-3">
+              <label for="validationTextarea" class="form-label">Reason for feedback</label>
+              <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+              <div class="invalid-feedback">
+                Please enter a message.
+              </div>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+                <label class="form-check-label" for="validationFormCheck1">I'm not a robot</label>
+                <div class="invalid-feedback">
+                    Are you a robot?
+                </div>
+              </div>
+              <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+                <label class="form-check-label" for="validationFormCheck1">Seriously, I'm not a robot</label>
+                <div class="invalid-feedback">ARE you though?</div>
+              </div>
+              <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+                <label class="form-check-label" for="validationFormCheck1">Stop this madness</label>
+                <div class="invalid-feedback">Stop complaining</div>
+              </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <div class = "card">
+            <div class="row">
+                <div class="col-3 footer">
+                    <h5><strong>Overview</strong></h5>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="/">Home</a></p>
+                    <p><a href="{% url 'product_list' %}">Products</a></p>
+                </div>
+                <div class="col-3 footer">
+                    <h5><strong>Follow Us</strong></h5>
+                    <p><a href="#">Facebook</a></p>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Discord</a></p>
+                </div>
+                <div class="col-3 footer">
+                    <h5><strong>Contact</strong></h5>
+                    <p>1308 Co Rd 129, No Name, CO, USA</p>
+                    <p>Zip Code: 81601</p>
+                    <p>Phone number: (01) 011-1010-1110
+                </div>
+                <div class="col-3 footer">
+                    <img src="http://127.0.0.1:8000/media/products/img.jpg" class="card-img-top">   
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

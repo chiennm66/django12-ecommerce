@@ -1,0 +1,97 @@
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+h4{
+    margin-left:200px;
+    margin-top: 30px;
+}
+h2{
+    margin-left:200px;
+    margin-top: 30px;
+}
+h6{
+    margin-left:200px;
+    margin-top: 30px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+.body{
+    align-items: center;
+}
+.headimg{
+    opacity:0.6;
+}
+.container {
+    position: relative;
+    text-align: center;
+}
+.container h1{
+    color: maroon;
+}
+
+.container .footer{
+    padding: 5px;
+}
+
+.nav {
+    background-color: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.nav .nav-link {
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.nav .nav-link:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+}
+
+.nav-right {
+    display: flex;
+}
+
+.nav-link {
+    padding: 10px;
+    text-decoration: none;
+}
+.footer .col-3{
+    color:black;
+}
+
+.col-6 img{
+    margin-left:100px;
+}
+
