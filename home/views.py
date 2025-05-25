@@ -102,7 +102,16 @@ def view_cart(request):
     cart_items=Cart.objects.filter(session_key=session_key)
     total_price=sum(item.get_total_price() for item in cart_items)
     return render(request,'cart.html', {'cart_items':cart_items, 'total_price':total_price})
-def remove_from_cart(request,cart_id):
-    cart_item=get_object_or_404(Cart, id=cart_id)
-    cart_item.delete()
+
+def remove_from_cart(request, item_id):
+    session_key = request.session.session_key
+    try:
+        cart_item = Cart.objects.get(product_id=item_id, session_key=session_key)
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+    except Cart.DoesNotExist:
+        pass
     return redirect('view_cart')

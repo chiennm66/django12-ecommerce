@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="vi">
  <head>
@@ -45,7 +43,7 @@
                        <td class="text-center">{{ item.product.price|floatformat:0 }} VND</td>
                        <td class="text-center">{{ item.get_total_price|floatformat:0 }} VND</td>
                        <td class="text-center">
-                           <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm">
+                           <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-danger btn-sm">
                                <i class="fas fa-trash-alt"></i> Xóa
                            </a>
                        </td>
