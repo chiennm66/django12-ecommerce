@@ -39,7 +39,11 @@
                                <span>{{ item.product.name }}</span>
                            </div>
                        </td>
-                       <td class="text-center">{{ item.quantity }}</td>
+                       <td class="text-center">
+                           <a href="{% url 'decrease_quantity' item.product.id %}" class="btn btn-outline-secondary btn-sm">-</a>
+                           <span style="margin: 0 10px;">{{ item.quantity }}</span>
+                           <a href="{% url 'increase_quantity' item.product.id %}" class="btn btn-outline-secondary btn-sm">+</a>
+                       </td>
                        <td class="text-center">{{ item.product.price|floatformat:0 }} VND</td>
                        <td class="text-center">{{ item.get_total_price|floatformat:0 }} VND</td>
                        <td class="text-center">

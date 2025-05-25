@@ -115,3 +115,26 @@ def remove_from_cart(request, item_id):
     except Cart.DoesNotExist:
         pass
     return redirect('view_cart')
+
+def increase_quantity(request, item_id):
+    session_key = request.session.session_key
+    try:
+        cart_item = Cart.objects.get(product_id=item_id, session_key=session_key)
+        cart_item.quantity += 1
+        cart_item.save()
+    except Cart.DoesNotExist:
+        pass
+    return redirect('view_cart')
+
+def decrease_quantity(request, item_id):
+    session_key = request.session.session_key
+    try:
+        cart_item = Cart.objects.get(product_id=item_id, session_key=session_key)
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+    except Cart.DoesNotExist:
+        pass
+    return redirect('view_cart')
