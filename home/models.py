@@ -7,6 +7,7 @@ class Product(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='products/')
     stock = models.IntegerField(default=10)  # Thêm giá trị mặc định
+    trailer_url = models.URLField(blank=True, null=True)  # Link YouTube hoặc video khác
 
 
 class Booking(models.Model):

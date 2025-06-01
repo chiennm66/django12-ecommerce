@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     {% load static %}
+    {% load custom_filters %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,6 +47,17 @@
     <a href="{% url 'add_to_cart' product.pk %}" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to cart</a>
     
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+    {% if product.trailer_url %}
+<div class="mt-4">
+    <h5>Trailer</h5>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item"
+                src="{{ product.trailer_url|youtube_embed }}"
+                allowfullscreen></iframe>
+    </div>
+</div>
+{% endif %}
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
