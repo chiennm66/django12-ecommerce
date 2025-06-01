@@ -7,6 +7,7 @@ from django.http import HttpResponseNotFound
 from django.contrib import messages
 from django.contrib.sessions.models import Session
 from .forms import SignUpForm
+from django.contrib import messages
 
 import logging
 
@@ -138,3 +139,19 @@ def decrease_quantity(request, item_id):
     except Cart.DoesNotExist:
         pass
     return redirect('view_cart')
+
+
+
+def checkout(request):
+    session_key = request.session.session_key
+    cart_items = Cart.objects.filter(session_key=session_key)
+    if not cart_items.exists():
+        messages.error(request, "Giỏ hàng của bạn đang trống.")
+        return redirect('view_cart')
+    # Xử lý logic thanh toán ở đây (ví dụ: lưu đơn hàng, gửi email, ...)
+    cart_items.delete()  # Xoá giỏ hàng sau khi thanh toán thành công
+    messages.success(request, "Thanh toán thành công! Cảm ơn bạn đã mua hàng.")
+    return redirect('checkout_success')
+
+def checkout_success(request):
+    return render(request, 'checkout_success.html')

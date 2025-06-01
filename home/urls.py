@@ -17,4 +17,6 @@ urlpatterns = [
     path('signin/', auth_views.LoginView.as_view(template_name='signin.html'), name='signin'),
     path('cart/increase/<int:item_id>/', views.increase_quantity, name='increase_quantity'),
     path('cart/decrease/<int:item_id>/', views.decrease_quantity, name='decrease_quantity'),
+    path('cart/checkout/', views.checkout, name='checkout'),
+    path('cart/checkout-success/', views.checkout_success, name='checkout_success'),
 ]
