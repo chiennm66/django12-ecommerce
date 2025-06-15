@@ -9,7 +9,6 @@ class Product(models.Model):
     stock = models.IntegerField(default=10)  # Thêm giá trị mặc định
     trailer_url = models.URLField(blank=True, null=True)  # Link YouTube hoặc video khác
 
-
 class Booking(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)  # Tên người đặt vé

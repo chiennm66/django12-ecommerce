@@ -15,8 +15,12 @@ logger = logging.getLogger(__name__)
 
 
 def product_list(request):
-    products = Product.objects.all()  # Lấy tất cả sản phẩm từ cơ sở dữ liệu
-    return render(request, 'product_list.html', {'products': products})
+    query = request.GET.get('q', '')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+    return render(request, 'product_list.html', {'products': products, 'query': query})
 
 
 def home(request):
@@ -50,7 +54,11 @@ def product_detail(request, pk):
 
 
 def product_list(request):
-    products = Product.objects.all()
+    query = request.GET.get('q', '')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
     paginator = Paginator(products, 6)  # Hiển thị 6 sản phẩm mỗi trang
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
