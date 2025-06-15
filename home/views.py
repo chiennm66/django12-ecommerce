@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.core.paginator import Paginator
-from .models import Product, Booking
+from .models import Product, Booking, Seat, BookingSeat
 from .forms import BookingForm
 from .models import Product,Cart
 from django.http import HttpResponseNotFound
@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.sessions.models import Session
 from .forms import SignUpForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 import logging
 
@@ -163,3 +164,16 @@ def checkout(request):
 
 def checkout_success(request):
     return render(request, 'checkout_success.html')
+
+@login_required
+def book_seat(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    seats = Seat.objects.filter(product=product)
+    if request.method == 'POST':
+        seat_id = request.POST.get('seat_id')
+        seat = get_object_or_404(Seat, id=seat_id, product=product, is_booked=False)
+        BookingSeat.objects.create(user=request.user, product=product, seat=seat)
+        seat.is_booked = True
+        seat.save()
+        return redirect('booking_success')
+    return render(request, 'book_seat.html', {'product': product, 'seats': seats})

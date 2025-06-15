@@ -19,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 LOGIN_REDIRECT_URL = '/'  # Chuyển hướng đến trang chủ sau khi đăng nhập
+LOGIN_URL = '/signin/'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'

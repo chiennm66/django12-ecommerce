@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Product(models.Model):
@@ -8,6 +9,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/')
     stock = models.IntegerField(default=10)  # Thêm giá trị mặc định
     trailer_url = models.URLField(blank=True, null=True)  # Link YouTube hoặc video khác
+
 
 class Booking(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
@@ -36,3 +38,14 @@ def __str__(self):
 
 def get_absolute_url(self):
     return reverse('product_detail', args=[str(self.id)])
+
+class Seat(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    seat_number = models.CharField(max_length=10)
+    is_booked = models.BooleanField(default=False)
+
+class BookingSeat(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
+    booking_time = models.DateTimeField(auto_now_add=True)

@@ -1,10 +1,7 @@
 from django.contrib import admin
-from .models import Product
-from .models import Booking
+from django.apps import apps
 
-admin.site.register(Product)
-@admin.register(Booking)
-class BookingAdmin(admin.ModelAdmin):
-    list_display = ('product', 'name', 'email', 'phone', 'booking_date')
-    search_fields = ('name', 'email', 'phone', 'product__name')
-    list_filter = ('booking_date',)
+app = apps.get_app_config('home')
+
+for model_name, model in app.models.items():
+    admin.site.register(model)

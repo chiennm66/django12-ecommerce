@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt ghế</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Đặt ghế cho phim: {{ product.name }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="seat-map mb-3">
+                <div class="screen text-center mb-2"
+                    style="background:#eee;padding:8px;border-radius:4px;">Màn hình</div>
+                <div class="d-flex flex-wrap">
+                    {% for seat in seats %}
+                    <label class="m-2">
+                        <input type="radio" name="seat_id" value="{{ seat.id }}" {% if seat.is_booked %}disabled{% endif %}
+                            style="display:none;">
+                        <span class="badge {% if seat.is_booked %}badge-secondary{% else %}badge-success{% endif %}"
+                            style="font-size:1.1em;cursor:pointer;{% if seat.is_booked %}opacity:0.5;{% endif %}">
+                            {{ seat.seat_number }}
+                        </span>
+                    </label>
+                    {% empty %}
+                    <p>Chưa có ghế nào cho phim này.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Đặt ghế</button>
+        </form>
+    </div>
+</body>
+
+</html>
